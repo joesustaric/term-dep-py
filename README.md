@@ -1,2 +1,59 @@
 # term-dep-py
-CLI app to calculate term depoisit interest written in Python
+
+A simple CLI app to calculate term deposits.
+
+## Setup
+
+I use `asdf` to manage versions of things.
+
+This uses a `.tool-versions` file to define the versions of things used. Look there and install them.
+
+You can use that or whichever way you use to manage your different python / poetry run time environments.
+
+Then run:
+```bash
+poetry install
+```
+
+## Development Setup
+
+Poetry virtual env ensures you're working in an isolated environment where dependencies won't conflict with other projects or the system Python.
+
+To activate the virtual environment in your current shell, use:
+
+```bash
+poetry env activate
+```
+
+Or alternatively, you can install the shell plugin and use the classic command:
+```bash
+poetry self add poetry-plugin-shell
+poetry shell
+```
+
+To run the main function:
+```bash
+poetry run cli
+```
+
+Run the tests.
+```bash
+poetry run pytest # -v for verbose
+```
+
+>[!NOTE]
+> The test configuration setting are in the `project.toml` file.
+
+This project uses [Ruff](https://docs.astral.sh/ruff/) as a Python linter and code formatter.
+
+To use it run:
+```bash
+# Check code format
+poetry run ruff check
+
+# Check code format and fix
+poetry run ruff check --fix
+
+# Run the Linter
+poetry run ruff format
+```

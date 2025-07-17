@@ -1,8 +1,12 @@
-#!/usr/bin/python3
+import argparse
 
 
-def main():
-    print("Ok")
+def main(argv=None):
+    parser = argparse.ArgumentParser(description="Calculate Term Deposit Interest")
+
+    parser.parse_args(argv)
+
+    print("Use -h or --help to see usage")
 
 
 if __name__ == "__main__":

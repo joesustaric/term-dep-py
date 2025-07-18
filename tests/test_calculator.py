@@ -1,14 +1,15 @@
 from src import calculator
+from src.models.term_deposit_details import TermDepositDetails, InterestFreq
 
 
 def test_calc_interest_deposit_10000_interest_1_point_1_monthly_term_3(capsys):
     deposit, interest, term = 10000, 0.011, 3
 
-    term_dep_details = calculator.TermDepositDetails(
+    term_dep_details = TermDepositDetails(
         deposit,
         interest,
         term,
-        calculator.InterestFreq.MONTH
+        InterestFreq.MONTH
         )
 
     interest_result = calculator.calculate_interest_total(term_dep_details)
@@ -20,11 +21,11 @@ def test_calc_interest_deposit_10000_interest_1_point_1_monthly_term_3(capsys):
 def test_calc_interest_deposit_10000_interest_1_point_1_quarterly_term_3(capsys):
     deposit, interest, term = 10000, 0.011, 3
 
-    term_dep_details = calculator.TermDepositDetails(
+    term_dep_details = TermDepositDetails(
         deposit,
         interest,
         term,
-        calculator.InterestFreq.QUARTER
+        InterestFreq.QUARTER
         )
 
     interest_result = calculator.calculate_interest_total(term_dep_details)
@@ -36,11 +37,11 @@ def test_calc_interest_deposit_10000_interest_1_point_1_quarterly_term_3(capsys)
 def test_calc_interest_deposit_10000_interest_1_point_1_annually_term_3(capsys):
     deposit, interest, term = 10000, 0.011, 3
 
-    term_dep_details = calculator.TermDepositDetails(
+    term_dep_details = TermDepositDetails(
         deposit,
         interest,
         term,
-        calculator.InterestFreq.ANNUAL
+        InterestFreq.ANNUAL
         )
 
     interest_result = calculator.calculate_interest_total(term_dep_details)
@@ -52,11 +53,11 @@ def test_calc_interest_deposit_10000_interest_1_point_1_annually_term_3(capsys):
 def test_calc_interest_deposit_10000_interest_1_point_1_maturity_term_3(capsys):
     deposit, interest, term = 10000, 0.011, 3
 
-    term_dep_details = calculator.TermDepositDetails(
+    term_dep_details = TermDepositDetails(
         deposit,
         interest,
         term,
-        calculator.InterestFreq.MATURITY
+        InterestFreq.MATURITY
         )
 
     interest_result = calculator.calculate_interest_total(term_dep_details)

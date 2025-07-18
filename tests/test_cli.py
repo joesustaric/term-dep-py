@@ -7,23 +7,30 @@ def test_cli_with_help_flag(capsys):
     with pytest.raises(SystemExit):
         cli.main(["--help"])
 
+    description = "Calculate Term Deposit Interest"
+    amount_flag = "--deposit DEPOSIT  The whole dollar amount for initial deposit."
+
     captured = capsys.readouterr()
-    assert "Calculate Term Deposit Interest" in captured.out
+
+    assert description in captured.out
+    assert amount_flag in captured.out
 
 
 def test_cli_with_no_args(capsys):
-    cli.main([])
+    cli.main()
 
     captured = capsys.readouterr()
 
-    assert captured.err == "Use -h or --help to see usage"
+    result = "Use -h or --help to see usage\n"
+
+    assert result == captured.out
 
 
 # def test_cli_with_custom_args(capsys):
 #     # Easy to test with any arguments
-#     cli.main(['--amount', '1000', '--interest', '5.5'])
-#
+#     cli.main(['--amount', '10000', '--interest', '1.1', '--years', '3'])
+
 #     captured = capsys.readouterr()
-#
+
 #     # Assert your expectations
 #     assert "Ok" in captured.out

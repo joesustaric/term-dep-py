@@ -3,10 +3,11 @@ import argparse
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        prog="term-dep-calc", description="Calculate Term Deposit Interest"
+        prog="poetry run cli", description="Calculate Term Deposit Interest"
     )
     parser.add_argument(
-        "--deposit", help="The whole dollar amount for initial deposit."
+        "--deposit", help="The whole dollar amount for initial deposit.",
+        type=int, required=True
     )
 
     parser.parse_args(argv)

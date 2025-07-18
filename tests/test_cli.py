@@ -4,6 +4,7 @@ import src.cli as cli
 
 
 def test_cli_with_help_flag(capsys):
+    
     with pytest.raises(SystemExit):
         cli.main(["--help"])
 
@@ -17,13 +18,15 @@ def test_cli_with_help_flag(capsys):
 
 
 def test_cli_with_no_args(capsys):
-    cli.main()
+
+    with pytest.raises(SystemExit):
+        cli.main()
 
     captured = capsys.readouterr()
 
-    result = "Use -h or --help to see usage\n"
+    result = "usage: poetry run cli [-h] --deposit DEPOSIT\n"
 
-    assert result == captured.out
+    assert result in captured.err
 
 
 # def test_cli_with_custom_args(capsys):

@@ -19,10 +19,11 @@ def main(argv=None):
         type=int, required=True
     )
 
-    args = parser.parse_args(argv)
-    deposit = args.deposit
-    interest = args.interest
-    length = args.length
+    parser.parse_args(argv)
+    # args = parser.parse_args(argv)
+    # deposit = args.deposit
+    # interest = args.interest
+    # length = args.length
 
 
 if __name__ == "__main__":

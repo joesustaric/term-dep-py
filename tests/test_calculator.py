@@ -1,11 +1,16 @@
-import pytest
 from src import calculator
-from decimal import Decimal
+
 
 def test_calculate_interest(capsys):
-    deposit, interest, length = 10000, 0.011, 3
+    deposit, interest, term = 10000, 0.011, 3
+    term_dep_details = calculator.TermDepositDetails(
+        deposit,
+        interest,
+        term,
+        calculator.InterestFreq.MONTH
+        )
 
-    interest_result = calculator.calculate_interest(deposit, interest, length)
+    interest_result = calculator.calculate_interest_total(term_dep_details)
 
     correct_interest = 335
 

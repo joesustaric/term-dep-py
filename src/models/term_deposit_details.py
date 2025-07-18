@@ -1,6 +1,7 @@
 from decimal import ROUND_HALF_UP, Decimal
 from enum import Enum
 
+
 class InterestFreq(Enum):
     MONTH = 1
     QUARTER = 2
@@ -34,5 +35,7 @@ class TermDepositDetails:
         return self.term * ITERATIONS_PER_YEAR[self.interest_freq]
 
     def total_interest(self) -> int:
-        rounded = int(Decimal(self.total_money).quantize(Decimal('1'), rounding=ROUND_HALF_UP))
+        rounded = int(
+            Decimal(self.total_money).quantize(Decimal('1'), rounding=ROUND_HALF_UP)
+            )
         return (rounded - self.deposit)

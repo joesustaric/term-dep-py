@@ -57,3 +57,13 @@ poetry run ruff check --fix
 # Run the Linter
 poetry run ruff format
 ```
+
+### Debugging
+
+You can use pythons `pdb` by inserting:
+
+```python
+import pdb; pdb.set_trace()
+```
+
+Refer to the docs [here](https://docs.python.org/3/library/pdb.html) on how to use the debugger.

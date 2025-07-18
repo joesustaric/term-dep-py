@@ -5,19 +5,19 @@ from enum import Enum
 class InterestFreq(Enum):
     MONTH = 1
     QUARTER = 2
-    YEAR = 3
+    ANNUAL = 3
     MATURITY = 4
 
 ITERATIONS_PER_YEAR = {
     InterestFreq.MONTH: 12,
     InterestFreq.QUARTER: 4,
-    InterestFreq.YEAR: 1
+    InterestFreq.ANNUAL: 1
 }
 
 DAYS_PER = {
     InterestFreq.MONTH: 30.42,
     InterestFreq.QUARTER: 91.25,
-    InterestFreq.YEAR: 365
+    InterestFreq.ANNUAL: 365.0
 }
 
 class TermDepositDetails:
@@ -29,46 +29,36 @@ class TermDepositDetails:
         self.interest = interest
         self.term = term
         self.interest_freq = interest_freq
-        self.total_interest = deposit
+        self.total_money = deposit
+
+    def interest_payment_periods(self) -> int:
+        return self.term * ITERATIONS_PER_YEAR[self.interest_freq]
+
+    def total_interest(self) -> int:
+        rounded = int(Decimal(self.total_money).quantize(Decimal('1'), rounding=ROUND_HALF_UP))
+        return (rounded - self.deposit)
 
 def calculate_interest_total(term_dep_details: TermDepositDetails) -> int:
 
-    # total_iterations = term_dep_details.term * ITERATIONS_PER_YEAR[InterestFreq.MONTH]
-    # running_total = term_dep_details.deposit
+    _calc_all_interest(term_dep_details)
 
-    # while total_iterations != 0:
-    #     running_total += _calc_interest_chunk(running_total, term_dep_details)
-    #     total_iterations-= 1
+    return term_dep_details.total_interest()
 
-    # rounded_dec = Decimal(running_total).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-    # return int(rounded_dec) - term_dep_details.deposit
+def _calc_all_interest(term_dep_details: TermDepositDetails):
 
-    total_iterations = term_dep_details.term * ITERATIONS_PER_YEAR[InterestFreq.MONTH]
-    foo(term_dep_details, total_iterations)
+    if term_dep_details.interest_freq == InterestFreq.MATURITY:
+        term_dep_details.total_money += term_dep_details.deposit * term_dep_details.interest * term_dep_details.term
+        return
 
-    rounded_dec = Decimal(term_dep_details.total_interest).quantize(Decimal('0.01'), rounding=ROUND_HALF_UP)
-    return int(rounded_dec) - term_dep_details.deposit
+    counter = term_dep_details.interest_payment_periods()
+    while counter != 0:
+        term_dep_details.total_money += _calc_interest_chunk(term_dep_details)
+        counter -= 1
 
-def _calc_interest_chunk(previous_total, term_dep_details: TermDepositDetails):
+def _calc_interest_chunk(term_dep_details: TermDepositDetails):
 
-    raw_interest = (previous_total * term_dep_details.interest)
-    daily_interest = (raw_interest / DAYS_PER[InterestFreq.YEAR])
-
+    raw_interest = (term_dep_details.total_money * term_dep_details.interest)
+    daily_interest = (raw_interest / DAYS_PER[InterestFreq.ANNUAL])
     result = daily_interest * DAYS_PER[term_dep_details.interest_freq]
 
     return result
-
-
-def foo(term_dep_details: TermDepositDetails, counter)-> TermDepositDetails:
-
-    if counter == 0:
-        return
-
-    raw_interest = (term_dep_details.total_interest * term_dep_details.interest)
-    daily_interest = (raw_interest / DAYS_PER[InterestFreq.YEAR])
-
-    term_dep_details.total_interest += daily_interest * DAYS_PER[term_dep_details.interest_freq]
-
-    counter -= 1
-    foo(term_dep_details, counter)
-

@@ -6,7 +6,7 @@ def calculate_interest_total(term_dep_details: TermDepositDetails):
 
     if term_dep_details.interest_payment_periods() == InterestFreq.MATURITY:
         term_dep_details.total_money += (term_dep_details.deposit *
-                                         term_dep_details.interest * term_dep_details.term)
+                                         term_dep_details.interest * term_dep_details.term_years)
     else:
         _calc_all_interest_payment_period(term_dep_details)
 

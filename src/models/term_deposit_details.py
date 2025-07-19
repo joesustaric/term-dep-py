@@ -22,19 +22,21 @@ DAYS_PER = {
 
 class TermDepositDetails:
     def __init__(
-            self, deposit: Decimal, interest: float, term: int, interest_freq: InterestFreq
+            self, deposit: Decimal, interest: float, term_years: int, term_months: int,
+            interest_freq: InterestFreq
             ):
 
         self.deposit = deposit
         self.interest = interest
-        self.term = term
+        self.term_years = term_years
+        self.terms_months = term_months
         self.interest_freq = interest_freq
         self.total_money = deposit
 
     def interest_payment_periods(self) -> int:
         if self.interest_freq == InterestFreq.MATURITY:
             return InterestFreq.MATURITY
-        return self.term * ITERATIONS_PER_YEAR[self.interest_freq]
+        return self.term_years * ITERATIONS_PER_YEAR[self.interest_freq]
 
     def total_interest(self) -> int:
         rounded = int(

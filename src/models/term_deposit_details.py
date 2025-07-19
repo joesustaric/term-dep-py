@@ -32,6 +32,8 @@ class TermDepositDetails:
         self.total_money = deposit
 
     def interest_payment_periods(self) -> int:
+        if self.interest_freq == InterestFreq.MATURITY:
+            return InterestFreq.MATURITY
         return self.term * ITERATIONS_PER_YEAR[self.interest_freq]
 
     def total_interest(self) -> int:

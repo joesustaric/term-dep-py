@@ -62,12 +62,20 @@ def test_bad_months_input():
             )
 
 def test_bad_freq_input():
+    # fails - throws exception
+    input_0 = [1234, 0.011, 1, 1, "z"]
     input_1 = [1234, 0.011, 1, 1, "masdf"]
     input_2 = [1234, 0.011, 1, 1, ""]
+    # pass - no exception
     input_3 = [1234, 0.011, 1, 1, "m"] # (m)onthly
     input_4 = [1234, 0.011, 1, 1, "a"] # (a)nually
     input_5 = [1234, 0.011, 1, 1, "q"] # (q)uarterly
     input_6 = [1234, 0.011, 1, 1, "t"] # ma(t)urity
+
+    with pytest.raises(ValidationException):
+        validate_inputs(
+            input_0[0], input_0[1], input_0[2], input_0[3], input_0[4]
+            )
 
     with pytest.raises(ValidationException):
         validate_inputs(

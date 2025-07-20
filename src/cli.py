@@ -1,4 +1,5 @@
 import argparse
+import sys
 from decimal import Decimal
 
 
@@ -25,14 +26,21 @@ def main(argv=None):
     parser.add_argument(
         "--frequency",
         help="The frequency of interest payments - m=monthly, a=annual q=quarterly, t=maturity",
-        type=int, required=True
+        type=str, required=True
     )
+    try:
+        args = parser.parse_args(argv)
+        validate_inputs(
+            args.deposit,
+            args.interest,
+            args.years,
+            args.months,
+            args.frequency
+        )
+    except ValidationException as e:
+        print(e, file=sys.stderr)
+        raise e
 
-    parser.parse_args(argv)
-    # args = parser.parse_args(argv)
-    # deposit = args.deposit
-    # interest = args.interest
-    # length = args.length
 
 
 if __name__ == "__main__":

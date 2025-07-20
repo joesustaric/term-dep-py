@@ -2,6 +2,8 @@ import pytest
 
 import src.cli as cli
 
+from .test_input_validator import ValidationException
+
 
 def test_cli_with_no_args(capsys):
 
@@ -40,7 +42,23 @@ def test_cli_with_help_flag(capsys):
     assert months_flag in captured.out
     assert freq_flag in captured.out
 
-# def test_cli_with_help_flag(capsys):
+def test_cli_validates_args(capsys):
+
+    with pytest.raises(ValidationException):
+        cli.main([
+            "--deposit", "10000",
+            "--interest", "0.011",
+            "--years", "3",
+            "--months", "45",
+            "--frequency", "asdf"
+            ])
+
+    result = "invalid"
+
+    captured = capsys.readouterr()
+
+    assert result in captured.err
+
 
 #     with pytest.raises(SystemExit):
 #         cli.main([

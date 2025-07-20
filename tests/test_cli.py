@@ -11,7 +11,7 @@ def test_cli_with_no_args(capsys):
     captured = capsys.readouterr()
     result = (
         "poetry run cli: error: the following arguments are required:"
-        " --deposit, --interest, --length"
+        " --deposit, --interest, --years"
         )
 
     assert result in captured.err
@@ -22,17 +22,21 @@ def test_cli_with_help_flag(capsys):
     with pytest.raises(SystemExit):
         cli.main(["--help"])
 
+    # Not asserting on the description
+    # just that there is something showing how to use in the --help menu
     description = "Calculate Term Deposit Interest"
-    deposit_flag = " --deposit DEPOSIT    The dollar amount for initial deposit e.g. 1000"
-    interest_flag = "--interest INTEREST  The term deposit interest rate percent e.g. 1.1"
-    length_flag = "--length LENGTH      The term deposit length in years e.g. 3"
+    deposit_flag = " --deposit DEPOSIT "
+    interest_flag = "--interest INTEREST "
+    years_flag = "--years YEARS"
+    months_flag = "--months MONTHS"
 
     captured = capsys.readouterr()
 
     assert description in captured.out
     assert deposit_flag in captured.out
     assert interest_flag in captured.out
-    assert length_flag in captured.out
+    assert years_flag in captured.out
+    assert months_flag in captured.out
 
 # def test_cli_with_help_flag(capsys):
 

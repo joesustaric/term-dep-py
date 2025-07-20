@@ -2,7 +2,24 @@ from src import calculator
 from src.models.term_deposit_details import InterestFreq, TermDepositDetails
 
 
-def test_calc_interest_deposit_10000_interest_1_point_1_monthly_term_3():
+def test_calc_interest_deposit_10000_interest_1_point_1_monthly_0_years_3_months():
+    deposit, interest, term_years, term_months = 10000, 0.011, 0, 3
+
+    term_dep_details = TermDepositDetails(
+        deposit,
+        interest,
+        term_years,
+        term_months,
+        InterestFreq.MONTH
+        )
+
+    calculator.calculate_interest_total(term_dep_details)
+
+    correct_interest = 28
+
+    assert correct_interest == term_dep_details.total_interest()
+
+def test_calc_interest_deposit_10000_interest_1_point_1_monthly_3_years():
     deposit, interest, term_years, term_months = 10000, 0.011, 3, 0
 
     term_dep_details = TermDepositDetails(
@@ -19,7 +36,7 @@ def test_calc_interest_deposit_10000_interest_1_point_1_monthly_term_3():
 
     assert correct_interest == term_dep_details.total_interest()
 
-def test_calc_interest_deposit_10000_interest_1_point_1_quarterly_term_3():
+def test_calc_interest_deposit_10000_interest_1_point_1_quarterly_3_years():
     deposit, interest, term_years, term_months = 10000, 0.011, 3, 0
 
     term_dep_details = TermDepositDetails(
@@ -36,7 +53,7 @@ def test_calc_interest_deposit_10000_interest_1_point_1_quarterly_term_3():
 
     assert correct_interest == term_dep_details.total_interest()
 
-def test_calc_interest_deposit_10000_interest_1_point_1_annually_term_3():
+def test_calc_interest_deposit_10000_interest_1_point_1_annually_3_years():
     deposit, interest, term_years, term_months = 10000, 0.011, 3, 0
 
     term_dep_details = TermDepositDetails(
@@ -53,7 +70,7 @@ def test_calc_interest_deposit_10000_interest_1_point_1_annually_term_3():
 
     assert correct_interest == term_dep_details.total_interest()
 
-def test_calc_interest_deposit_10000_interest_1_point_1_maturity_term_3():
+def test_calc_interest_deposit_10000_interest_1_point_1_maturity_3_years():
     deposit, interest, term_years, term_months = 10000, 0.011, 3, 0
 
     term_dep_details = TermDepositDetails(

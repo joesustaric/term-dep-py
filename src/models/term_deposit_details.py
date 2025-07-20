@@ -8,7 +8,7 @@ class InterestFreq(Enum):
     ANNUAL = 3
     MATURITY = 4
 
-ITERATIONS_PER_YEAR = {
+PERIODS_PER_YEAR = {
     InterestFreq.MONTH: 12,
     InterestFreq.QUARTER: 4,
     InterestFreq.ANNUAL: 1
@@ -22,8 +22,8 @@ DAYS_PER = {
 
 class TermDepositDetails:
     def __init__(
-            self, deposit: Decimal, interest: float, term_years: int, term_months: int,
-            interest_freq: InterestFreq
+            self, deposit: Decimal, interest: float, term_years: int,
+            term_months: int, interest_freq: InterestFreq
             ):
 
         self.deposit = deposit
@@ -34,9 +34,14 @@ class TermDepositDetails:
         self.total_money = deposit
 
     def interest_payment_periods(self) -> int:
-        if self.interest_freq == InterestFreq.MATURITY:
-            return InterestFreq.MATURITY
-        return self.term_years * ITERATIONS_PER_YEAR[self.interest_freq]
+        result = 0
+
+        result = self.term_years * PERIODS_PER_YEAR[self.interest_freq]
+
+        if self.interest_freq == InterestFreq.MONTH:
+            result += self.terms_months
+
+        return result
 
     def total_interest(self) -> int:
         rounded = int(

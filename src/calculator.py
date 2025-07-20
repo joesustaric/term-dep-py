@@ -8,17 +8,17 @@ def calculate_interest_total(term_dep_details: TermDepositDetails):
         term_dep_details.total_money += (term_dep_details.deposit *
                                          term_dep_details.interest * term_dep_details.term_years)
     else:
-        _calc_all_interest_payment_period(term_dep_details)
-        _calc_remainder_months(term_dep_details)
+        _calc_all_interest_payment_periods(term_dep_details)
 
-def _calc_all_interest_payment_period(term_dep_details: TermDepositDetails):
+    _calc_remainder_months(term_dep_details)
+
+def _calc_all_interest_payment_periods(term_dep_details: TermDepositDetails):
         counter = term_dep_details.interest_payment_periods()
         while counter != 0:
-            term_dep_details.total_money += _calc_interest_for_a_period(term_dep_details)
+            term_dep_details.total_money += _calc_interest_for_full_payment_periods(term_dep_details)
             counter -= DECREMENT_AMOUNT
 
-def _calc_interest_for_a_period(term_dep_details: TermDepositDetails):
-
+def _calc_interest_for_full_payment_periods(term_dep_details: TermDepositDetails):
     raw_interest = (term_dep_details.total_money * term_dep_details.interest)
     daily_interest = (raw_interest / DAYS_PER[InterestFreq.ANNUAL])
 
@@ -27,10 +27,10 @@ def _calc_interest_for_a_period(term_dep_details: TermDepositDetails):
 def _calc_remainder_months(term_dep_details: TermDepositDetails):
     counter = term_dep_details.month_remainders()
     while counter != 0:
-        term_dep_details.total_money += _calc_interest_for_a_x_period(term_dep_details)
+        term_dep_details.total_money += _calc_interest_for_remaining_months_period(term_dep_details)
         counter -= DECREMENT_AMOUNT
 
-def _calc_interest_for_a_x_period(term_dep_details: TermDepositDetails):
+def _calc_interest_for_remaining_months_period(term_dep_details: TermDepositDetails):
 
     raw_interest = (term_dep_details.total_money * term_dep_details.interest)
     daily_interest = (raw_interest / DAYS_PER[InterestFreq.ANNUAL])

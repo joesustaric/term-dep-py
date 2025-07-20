@@ -44,6 +44,8 @@ class TermDepositDetails:
     def month_remainders(self) -> int:
         if self.interest_freq == InterestFreq.QUARTER:
             return self.terms_months % 4
+        elif self.interest_freq == InterestFreq.MATURITY:
+            return self.terms_months
         return 0
 
     def total_interest(self) -> int:

@@ -92,6 +92,7 @@ def test_calc_several_random_cases():
         [TermDepositDetails(60000, 0.011, 4, 11, InterestFreq.MONTH), 3333],
         [TermDepositDetails(10000, 0.011, 3, 1, InterestFreq.QUARTER), 345],
         [TermDepositDetails(10000, 0.027, 4, 0, InterestFreq.ANNUAL), 1125],
+        [TermDepositDetails(10000, 0.015, 3, 4, InterestFreq.MATURITY), 502],
     ]
 
     for term_dep_details, result in cases:

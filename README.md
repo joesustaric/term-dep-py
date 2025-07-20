@@ -2,9 +2,14 @@
 
 A simple CLI app to calculate term deposits.
 
+>[!NOTE]
+> I acknowledge this implementation may not have heeded the _hint_ however I did not look at any compound interest equations.
+> This was me trying to figure it out.
+
 ## Decisions
 1. Done basic input data validation for range checks. The `argparser` can do type checking, the input validator does value checking.
 1. It's unclear how remainder interest is calculated. For instance a 3 year, 4 month term deposit paid yearly pays 3 yearly interest payments but how does the remainder get processed? I made an assumption that it's per month for the same interest rate. I know this isn't correct from the online calculator however it's not clear how its being done without more time reverse engineering the calculations. Apologies, in the real world I would ask for the rules from a subject matter expert.
+1. Given more time I would have used `Decimal` types more thoroughly or a robust tested money library to ensure no rounding errors. Floats are used for simplicity.
 
 ## Setup
 

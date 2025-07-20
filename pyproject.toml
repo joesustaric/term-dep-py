@@ -87,7 +87,7 @@ exclude = [
 ]
 
 # Same as Black.
-line-length = 92
+line-length = 97
 indent-width = 4
 
 # Assume Python 3.8+

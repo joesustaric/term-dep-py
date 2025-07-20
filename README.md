@@ -2,6 +2,10 @@
 
 A simple CLI app to calculate term deposits.
 
+## Decisions
+1. Have left out input validation checking. e.eg asking for quarterly interest payments but only selecting a 3 month deposit term.
+1. Have left out bounds checking on some of the inputs. e.g. max term deposit amount, interest checking, months should be less than 12 etc.
+
 ## Setup
 
 I use `asdf` to manage versions of things.

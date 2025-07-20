@@ -26,12 +26,9 @@ class TermDepositDetails:
             term_months: int, interest_freq: InterestFreq
             ):
 
-        self.deposit = deposit
-        self.interest = interest
-        self.term_years = term_years
-        self.terms_months = term_months
-        self.interest_freq = interest_freq
-        self.total_money = deposit
+        self.deposit, self.interest = deposit, interest
+        self.term_years, self.terms_months = term_years, term_months
+        self.interest_freq, self.total_money = interest_freq, deposit
 
     def interest_payment_periods(self) -> int:
         result = 0

@@ -1,6 +1,6 @@
+import math
 from decimal import ROUND_HALF_UP, Decimal
 from enum import Enum
-import math
 
 
 class InterestFreq(Enum):

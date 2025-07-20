@@ -5,6 +5,7 @@ A simple CLI app to calculate term deposits.
 ## Decisions
 1. Have left out input validation checking. e.eg asking for quarterly interest payments but only selecting a 3 month deposit term.
 1. Have left out bounds checking on some of the inputs. e.g. max term deposit amount, interest checking, months should be less than 12 etc.
+1. it's unclear how remainder interest is calculated for instance a 3 year 4 month term deposit paid yearly pays 3 yearly interest payments but how does the remainder get processed? I made an assumption that its per month. Except if its quarterly. Each 4 months pays interest then any month remainders are paid monthly. I know this isn't correct from the online calculator however it's not clear how its being done without more time reverse engineering the calculations. 
 
 ## Setup
 

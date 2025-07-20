@@ -5,7 +5,7 @@ import src.cli as cli
 from .test_input_validator import ValidationException
 
 
-def test_cli_with_no_args(capsys):
+def test_cli_end_to_end_with_no_args(capsys):
 
     with pytest.raises(SystemExit):
         cli.main()
@@ -19,7 +19,7 @@ def test_cli_with_no_args(capsys):
     assert result in captured.err
 
 
-def test_cli_with_help_flag(capsys):
+def test_cli_end_to_end_with_help_flag(capsys):
 
     with pytest.raises(SystemExit):
         cli.main(["--help"])
@@ -42,7 +42,7 @@ def test_cli_with_help_flag(capsys):
     assert months_flag in captured.out
     assert freq_flag in captured.out
 
-def test_cli_validates_args(capsys):
+def test_cli_end_to_end_throws_validation_exception(capsys):
 
     with pytest.raises(ValidationException):
         cli.main([
@@ -59,7 +59,7 @@ def test_cli_validates_args(capsys):
 
     assert result in captured.err
 
-def test_cli_end_to_end(capsys):
+def test_cli_end_to_end_happy_path(capsys):
 
     cli.main([
         "--deposit", "10000",
@@ -90,4 +90,3 @@ def test_cli_end_to_end_handel_uppercase_freq_flag(capsys):
     captured = capsys.readouterr()
 
     assert result in captured.out
-

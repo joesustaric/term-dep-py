@@ -75,3 +75,19 @@ def test_cli_end_to_end(capsys):
 
     assert result in captured.out
 
+def test_cli_end_to_end_handel_uppercase_freq_flag(capsys):
+
+    cli.main([
+        "--deposit", "10000",
+        "--interest", "0.011",
+        "--years", "3",
+        "--months", "0",
+        "--frequency", "A"
+        ])
+
+    result = "Total Interest Made = $334"
+
+    captured = capsys.readouterr()
+
+    assert result in captured.out
+

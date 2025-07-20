@@ -45,7 +45,7 @@ def main(argv=None):
             args.interest,
             args.years,
             args.months,
-            args.frequency
+            args.frequency.lower()
         )
         result = calculate_interest_total(
             TermDepositDetails(
@@ -53,7 +53,7 @@ def main(argv=None):
                 args.interest,
                 args.years,
                 args.months,
-                TRANSLATOR[args.frequency]
+                TRANSLATOR[args.frequency.lower()]
             )
         )
         print_result(result)

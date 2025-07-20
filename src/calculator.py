@@ -4,7 +4,7 @@ DECREMENT_AMOUNT = 1
 
 def calculate_interest_total(term_dep_details: TermDepositDetails):
 
-    if term_dep_details.interest_payment_periods() == InterestFreq.MATURITY:
+    if term_dep_details.interest_freq == InterestFreq.MATURITY:
         term_dep_details.total_money += (term_dep_details.deposit *
                                          term_dep_details.interest * term_dep_details.term_years)
     else:

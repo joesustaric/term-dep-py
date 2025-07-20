@@ -89,14 +89,13 @@ def test_calc_interest_deposit_10000_interest_1_point_1_maturity_3_years():
 
 def test_calc_several_random_cases():
     cases = [
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970],
-        # [TermDepositDetails(60000, 0.022, 1, InterestFreq.MONTH), 6970],
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
-        # [TermDepositDetails(60000, 0.022, 5, InterestFreq.MONTH), 6970]
+        [TermDepositDetails(60000, 0.011, 4, 11, InterestFreq.MONTH), 3333],
+        [TermDepositDetails(10000, 0.011, 3, 1, InterestFreq.QUARTER), 345],
+        [TermDepositDetails(10000, 0.027, 4, 0, InterestFreq.ANNUAL), 1125],
     ]
+
+    for term_dep_details, result in cases:
+        calculator.calculate_interest_total(term_dep_details)
+
+        assert result == term_dep_details.total_interest()
+

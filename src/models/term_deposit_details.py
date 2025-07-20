@@ -1,5 +1,6 @@
 from decimal import ROUND_HALF_UP, Decimal
 from enum import Enum
+import math
 
 
 class InterestFreq(Enum):
@@ -31,14 +32,19 @@ class TermDepositDetails:
         self.interest_freq, self.total_money = interest_freq, deposit
 
     def interest_payment_periods(self) -> int:
-        result = 0
-
         result = self.term_years * PERIODS_PER_YEAR[self.interest_freq]
 
         if self.interest_freq == InterestFreq.MONTH:
             result += self.terms_months
+        elif self.interest_freq == InterestFreq.QUARTER:
+            result += math.floor(self.terms_months / 4)
 
         return result
+
+    def month_remainders(self) -> int:
+        if self.interest_freq == InterestFreq.QUARTER:
+            return self.terms_months % 4
+        return 0
 
     def total_interest(self) -> int:
         rounded = int(

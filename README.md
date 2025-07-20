@@ -3,17 +3,16 @@
 A simple CLI app to calculate term deposits.
 
 ## Decisions
-1. Have left out input validation checking. e.eg asking for quarterly interest payments but only selecting a 3 month deposit term.
-1. Have left out bounds checking on some of the inputs. e.g. max term deposit amount, interest checking, months should be less than 12 etc.
-1. it's unclear how remainder interest is calculated for instance a 3 year 4 month term deposit paid yearly pays 3 yearly interest payments but how does the remainder get processed? I made an assumption that its per month. Except if its quarterly. Each 4 months pays interest then any month remainders are paid monthly. I know this isn't correct from the online calculator however it's not clear how its being done without more time reverse engineering the calculations. 
+1. Done basic input data validation for range checks. The `argparser` can do type checking, the input validator does value checking.
+1. It's unclear how remainder interest is calculated. For instance a 3 year, 4 month term deposit paid yearly pays 3 yearly interest payments but how does the remainder get processed? I made an assumption that it's per month for the same interest rate. I know this isn't correct from the online calculator however it's not clear how its being done without more time reverse engineering the calculations. Apologies, in the real world I would ask for the rules from a subject matter expert.
 
 ## Setup
 
-I use `asdf` to manage versions of things.
+I use [`asdf`](https://github.com/asdf-vm/asdf) to manage versions of things.
 
 This uses a `.tool-versions` file to define the versions of things used. Look there and install them.
 
-You can use that or whichever way you use to manage your different python / poetry run time environments.
+You can use that or whichever way you use to manage your different python / poetry run time environments. For MacOS `brew` generally will have it.
 
 Then run:
 ```bash

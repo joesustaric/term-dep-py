@@ -39,6 +39,17 @@ To run the main function:
 ```bash
 poetry run cli
 ```
+For help menu run:
+```bash
+poetry run cli --help
+```
+
+Run an example
+e.g. - Initial deposit of $28900, interest rate of 3.1% p.a over 2 years and 3 months, paid monthly - run:
+Note frequency flag inputs are `m = monthly, a = annual q = quarterly, t = maturity`
+```bash
+poetry run cli --deposit 28900 --interest 0.031 --years 2 --months 3 --frequency m
+```
 
 Run the tests.
 ```bash

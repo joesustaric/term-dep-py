@@ -13,7 +13,7 @@ def test_cli_with_no_args(capsys):
     captured = capsys.readouterr()
     result = (
         "poetry run cli: error: the following arguments are required:"
-        " --deposit, --interest, --years"
+        " --deposit, --interest, --years, --months, --frequency"
         )
 
     assert result in captured.err

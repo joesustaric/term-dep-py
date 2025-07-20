@@ -29,6 +29,7 @@ def test_cli_with_help_flag(capsys):
     interest_flag = "--interest INTEREST "
     years_flag = "--years YEARS"
     months_flag = "--months MONTHS"
+    freq_flag = "--frequency FREQUENCY"
 
     captured = capsys.readouterr()
 
@@ -37,11 +38,17 @@ def test_cli_with_help_flag(capsys):
     assert interest_flag in captured.out
     assert years_flag in captured.out
     assert months_flag in captured.out
+    assert freq_flag in captured.out
 
 # def test_cli_with_help_flag(capsys):
 
 #     with pytest.raises(SystemExit):
-#         cli.main(["--deposit", "10000"])
+#         cli.main([
+#             "--deposit", "10000",
+#             "--interest", "0.011",
+#             "--years", "3",
+#             "--months", "0",
+#             "--"])
 
 #     result = "error: the following arguments are required: --interest, --length"
 

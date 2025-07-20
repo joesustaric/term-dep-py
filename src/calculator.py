@@ -3,9 +3,10 @@ from .models.term_deposit_details import DAYS_PER, InterestFreq, TermDepositDeta
 DECREMENT_AMOUNT = 1
 END_CONDITION = 0
 
-def calculate_interest_total(term_dep_details: TermDepositDetails):
+def calculate_interest_total(term_dep_details: TermDepositDetails) -> TermDepositDetails:
     _calc_all_interest_payment_periods(term_dep_details)
     _calc_remainder_months(term_dep_details)
+    return term_dep_details
 
 def _calc_all_interest_payment_periods(term_dep_details: TermDepositDetails):
     if term_dep_details.interest_freq == InterestFreq.MATURITY:

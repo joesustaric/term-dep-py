@@ -59,18 +59,19 @@ def test_cli_validates_args(capsys):
 
     assert result in captured.err
 
+def test_cli_end_to_end(capsys):
 
-#     with pytest.raises(SystemExit):
-#         cli.main([
-#             "--deposit", "10000",
-#             "--interest", "0.011",
-#             "--years", "3",
-#             "--months", "0",
-#             "--"])
+    cli.main([
+        "--deposit", "10000",
+        "--interest", "0.011",
+        "--years", "3",
+        "--months", "0",
+        "--frequency", "m"
+        ])
 
-#     result = "error: the following arguments are required: --interest, --length"
+    result = "Total Interest Made = $335"
 
-#     captured = capsys.readouterr()
+    captured = capsys.readouterr()
 
-#     assert result in captured.err
+    assert result in captured.out
 

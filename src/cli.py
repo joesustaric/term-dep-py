@@ -1,7 +1,17 @@
 import argparse
 import sys
-from decimal import Decimal
 
+from src.calculator import calculate_interest_total
+from src.input_validator import ValidationException, validate_inputs
+from src.models.term_deposit_details import InterestFreq, TermDepositDetails
+from src.writer import print_result
+
+TRANSLATOR = {
+    "m": InterestFreq.MONTH,
+    "a": InterestFreq.ANNUAL,
+    "q": InterestFreq.QUARTER,
+    "t": InterestFreq.MATURITY
+}
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
@@ -13,7 +23,7 @@ def main(argv=None):
     )
     parser.add_argument(
         "--interest", help="The term deposit interest rate percent - range 1 - 0.0 ",
-        type=Decimal, required=True
+        type=float, required=True
     )
     parser.add_argument(
         "--years", help="The term deposit length in years - range 0-5",
@@ -37,6 +47,16 @@ def main(argv=None):
             args.months,
             args.frequency
         )
+        result = calculate_interest_total(
+            TermDepositDetails(
+                args.deposit,
+                args.interest,
+                args.years,
+                args.months,
+                TRANSLATOR[args.frequency]
+            )
+        )
+        print_result(result)
     except ValidationException as e:
         print(e, file=sys.stderr)
         raise e

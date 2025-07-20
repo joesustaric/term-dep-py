@@ -25,10 +25,10 @@ def _calc_interest_full_payment_periods(term_dep_details: TermDepositDetails):
     return daily_interest * DAYS_PER[term_dep_details.interest_freq]
 
 # These below functions are very similar to the above.
-# I decided to not refactor these together because this is an explicit decision
-# I have made on how to handle remainder interest and is a separate business
-# logic to paying interest in all the whole interest payment periods.
-# If this is wrong or different then you dont need to unpick it from the core logic.
+# I decided to not refactor these together because im treating this as
+# separate business logic on how to handle remainder months as just
+# Monthly interest calcs. Except for when its quarterly and there are further
+# quarters to pay.
 
 def _calc_remainder_months(term_dep_details: TermDepositDetails):
     counter = term_dep_details.month_remainders()
